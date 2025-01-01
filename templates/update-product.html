@@ -1,0 +1,15 @@
+{% extends 'base-admin.html' %}
+{% block body %}
+<div>
+  <h2>Update Product</h2>
+  <form action="{{ url_for('update_product', id=product.id) }}" method="post" enctype="multipart/form-data">
+    <input type="text" name="name" id="name" placeholder="Name" value="{{ product.name }}" />
+    <input type="text" name="price" id="price" placeholder="Price" value="{{ product.price }}" />
+    <input type="text" name="jersey_no" id="jersey_no" placeholder="Jersey No" value="{{ product.jersey_no }}" />
+
+    <!-- Add other fields as needed -->
+
+    <input type="submit" value="Update" />
+  </form>
+</div>
+{% endblock %}

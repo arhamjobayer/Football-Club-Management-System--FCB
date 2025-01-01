@@ -1,0 +1,38 @@
+<!-- buy_ticket.html -->
+{% extends 'base.html' %}
+{% block body %}
+<body style="background-image: url('/static/uploads/background.jpg'); background-size: cover; margin: 0; color: white;">
+  <div class="page-content">
+    <h1>Choose Seat Type</h1>
+
+    <!-- Table with ticket types, prices, and "Buy Now" buttons -->
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Ticket Type</th>
+          <th>Price</th>
+          <th>Payment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Deluxe Seat</td>
+          <td>${{ deluxe_price }}</td>
+          <td><a href="{{ url_for('payment', match_id=match.id, seat_type='deluxe') }}" class="buy-button">Buy now</a></td>
+        </tr>
+        <tr>
+          <td>Medium Seat</td>
+          <td>${{ medium_price }}</td>
+          <td><a href="{{ url_for('payment', match_id=match.id, seat_type='medium') }}" class="buy-button">Buy now</a></td>
+        </tr>
+        <tr>
+          <td>Chair Seat</td>
+          <td>${{ chair_price }}</td>
+          <td><a href="{{ url_for('payment', match_id=match.id, seat_type='chair') }}" class="buy-button">Buy now</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</body>
+{% endblock %}

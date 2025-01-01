@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <body style="background-image: url('/static/uploads/background.jpg'); background-size: cover; margin: 0; color: white;">
+    <div class="product-details">
+      <div style="margin-left: 20px; float: left;">
+        <img src="/static/uploads/{{ product.imageFile }}" width="200" height="200" alt="{{ product.name }} Image"/>
+      </div>
+      <div class="product-info" style="margin-left: 20px; float: left;">
+        <div class="product-name">Product Name: {{ product.name }}</div>
+        <div class="product-price">Total Price: {{ product.price }}</div>
+
+      </div>
+
+      <!-- Card Information -->
+      <div class="card-info" style="float: right; margin-right: 20px;">
+        <form action="/done_payment_2"  method="post">
+          <label for="card_number" style="color: black;">Card Number:</label>
+          <input type="text" id="card_number" name="card_number" required><br>
+
+          <label for="ccv" style="color: black;">CCV:</label>
+          <input type="text" id="ccv" name="ccv" required><br>
+
+          <label for="expiry_date" style="color: black;">Expiry Date:</label>
+          <input type="text" id="expiry_date" name="expiry_date" placeholder="MM/YYYY" required><br>
+
+          <label for="pin" style="color: black;">PIN:</label>
+          <input type="password" id="pin" name="pin" maxlength="4" required><br>
+
+          <input type="submit" value="Buy Now" style="background-color: blue; color: white; padding: 10px 20px; font-size: 16px; margin-top: 10px;">
+        </form>
+      </div>
+    </div>
+  </body>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'base-admin.html' %} {% block body %}
+<div>
+  <form action="/admin/players" method="post" enctype="multipart/form-data">
+    <h2>Name</h2>
+    <input type="text" name="name" id="name" placeholder="name" />
+    <h2>Age</h2>
+    <input type="text" name="age" id="age" placeholder="age" />
+    <h2>Image</h2>
+    <input type="file" name="image" />
+    <h2>Height</h2>
+    <input type="text" name="height" id="height" placeholder="height" />
+    <h2>Weight</h2>
+    <input type="text" name="weight" id="weight" placeholder="weight" />
+    <h2>Nationality</h2>
+    <input
+      type="text"
+      name="nationality"
+      id="nationality"
+      placeholder="nationality"
+    />
+    <h2>Jersey No</h2>
+    <input
+      type="text"
+      name="jersey_no"
+      id="jersey_no"
+      placeholder="jersey_no"
+    />
+    <h2>Position</h2>
+    <input type="text" name="position" id="position" placeholder="position" />
+    <h2>Match Played</h2>
+    <input
+      type="text"
+      name="match_played"
+      id="match_played"
+      placeholder="match_played"
+    />
+    <h2>Goals</h2>
+    <input type="text" name="goals" id="goals" placeholder="goals" />
+    <h2>Assists</h2>
+    <input type="text" name="assists" id="assists" placeholder="assists" />
+    <br />
+    <input type="submit" value="Add player" />
+  </form>
+  <table>
+    <tr>
+      <th style="width: 30%">Name</th>
+      <th style="width: 10%">Age</th>
+      <th>File</th>
+      <th>Created At</th>
+      <th>Update</th>
+      <th>Delete</th>
+    </tr>
+    {% for player in all_players %}
+    <tr>
+      <td>{{ player.name }}</td>
+      <td>{{ player.age }}</td>
+      <td>
+        <image
+          src="/static/uploads/{{ player.imageFile }}"
+          width="200"
+          height="200"
+        />
+      </td>
+      <td>{{ player.created_at.date() }}</td>
+      <td><a href="/admin/players/update/{{player.id}}">Update</a></td>
+      <td><a href="/admin/players/delete/{{player.id}}">Delete</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+{% endblock %}

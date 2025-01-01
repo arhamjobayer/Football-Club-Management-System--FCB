@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% block body %}
+<body style="background-image: url('/static/uploads/background.jpg'); background-size: cover; margin: 0; color: white;">
+  <div class="page-content" style="color: black;">
+    <h1>Payment</h1>
+    <p>Match: {{ match.team1 }} vs {{ match.team2 }}</p>
+    <p>Seat Type: {{ seat_type }}</p>
+    <p>Price:
+      <span id="ticket-price">
+        {% if seat_type == 'deluxe' %}
+          ${{ deluxe_price }}
+        {% elif seat_type == 'medium' %}
+          ${{ medium_price }}
+        {% elif seat_type == 'chair' %}
+          ${{ chair_price }}
+        {% endif %}
+      </span>
+    </p>
+
+    <!-- Display user's name -->
+    <p>User: <span id="user-display-name">{{ current_user.name }}</span></p>
+
+    <!-- Form for purchasing tickets -->
+    <form method="post" id="payment-form">
+      <label for="num_tickets" style="color: black;">Number of Tickets (1-5):</label>
+      <select name="num_tickets" id="num-tickets">
+        {% for i in range(1, 6) %}
+          <option value="{{ i }}">{{ i }}</option>
+        {% endfor %}
+      </select>
+      <br>
+
+      <label for="user_name" style="color: black;">Your Name:</label>
+      <input type="text" name="user_name" id="user-name" required>
+      <br>
+
+      <label for="card_number" style="color: black;">Card Number:</label>
+      <input type="text" name="card_number" id="card-number" required>
+      <br>
+
+      <label for="cardholder_name" style="color: black;">Cardholder Name:</label>
+      <input type="text" name="cardholder_name" id="cardholder-name" required>
+      <br>
+
+      <label for="expiry_date" style="color: black;">Expiry Date:</label>
+      <input type="text" name="expiry_date" id="expiry-date" placeholder="MM/YY" required>
+      <br>
+
+      <label for="security_code" style="color: black;">Security Code:</label>
+      <input type="text" name="security_code" id="security-code" required>
+      <br>
+
+      <button type="button" onclick="calculatePrice()" style="background-color: green; color: white; padding: 10px 20px; font-size: 16px;">Calculate Price</button>
+
+      <p>Total Price: $<span id="total-price">0</span></p>
+
+      <button type="button" onclick="downloadTicket()" class="small-button" style="background-color: green; color: white; padding: 10px 20px; font-size: 16px;">Download Ticket</button>
+    </form>
+  </div>
+
+  <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+  <script>
+var userDisplayName = "{{ current_user.name }}";
+
+  function calculatePrice() {
+    var numTickets = document.getElementById('num-tickets').value;
+    var seatType = "{{ seat_type }}"; // Get seat type from Flask variable
+    var deluxePrice = {{ deluxe_price }};
+    var mediumPrice = {{ medium_price }};
+    var chairPrice = {{ chair_price }};
+    var totalPrice = 0;
+
+    if (seatType == 'deluxe') {
+      totalPrice = deluxePrice * numTickets;
+    } else if (seatType == 'medium') {
+      totalPrice = mediumPrice * numTickets;
+    } else if (seatType == 'chair') {
+      totalPrice = chairPrice * numTickets;
+    }
+
+    document.getElementById('total-price').textContent = totalPrice;
+    userDisplayName = document.getElementById('user-name').value;
+    document.getElementById('user-display-name').textContent = userDisplayName;
+  }
+
+  function downloadTicket() {
+    var userName = document.getElementById('user-name').value;
+    var cardNumber = document.getElementById('card-number').value;
+    var cardholderName = document.getElementById('cardholder-name').value;
+    var expiryDate = document.getElementById('expiry-date').value;
+    var securityCode = document.getElementById('security-code').value;
+
+    if (!userName || !cardNumber || !cardholderName || !expiryDate || !securityCode) {
+      alert('Please fill in all the required fields before downloading the ticket.');
+      return;
+    }
+
+    var content = document.querySelector('.page-content');
+    html2pdf(content, {
+      margin: 10,
+      filename: 'ticket.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    });
+  }
+  </script>
+</body>
+{% endblock %}

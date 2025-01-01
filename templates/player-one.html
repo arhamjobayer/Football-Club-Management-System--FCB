@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block body %}
+<body style="background-image: url('/static/uploads/background.jpg'); background-size: cover; margin: 0; color: black; font-size: 18px;">
+<style>
+  .card-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 20px; /* Add some space between details and video */
+  }
+
+  .card-details {
+    margin-bottom: 10px; /* Add space between details and video */
+    font-size: 15px; /* Increase the font size for details */
+  }
+
+  .video-container iframe {
+    width: 560px;
+    height: 315px;
+  }
+</style>
+
+<div class="card-container">
+  <div class="card">
+    <div>
+      <img
+        src="/static/uploads/{{ player.imageFile }}"
+        width="200"
+        height="200"
+      />
+    </div>
+    <div class="card-details">
+      <div>{{ player.name }}</div>
+      <div>Age: {{ player.age }}</div>
+      <div>Height: {{ player.height }}</div>
+      <div>Weight: {{ player.weight }}</div>
+      <div>Position: {{ player.position }}</div>
+      <div>Nationality: {{ player.nationality }}</div>
+      <div>Match Played: {{ player.match_played }}</div>
+      <div>Goals: {{ player.goals }}</div>
+      <div>Assists: {{ player.assists }}</div>
+    </div>
+  </div>
+  <!-- YouTube video embedded using iframe -->
+  <div class="video-container">
+    <iframe
+      src="https://www.youtube.com/watch?v=AWB8RryktsM"
+      frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+</div>
+</body>
+{% endblock %}

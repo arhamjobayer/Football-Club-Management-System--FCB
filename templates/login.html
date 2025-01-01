@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+    <!-- site metas -->
+    <title>Login page</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!-- bootstrap css -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="static/css/bootstrap.min.css"
+    />
+    <!-- style css -->
+    <link rel="stylesheet" type="text/css" href="static/css/style.css" />
+    <!-- Responsive-->
+    <link rel="stylesheet" href="static/css/responsive.css" />
+    <!-- fevicon -->
+    <link rel="icon" href="static/images/fevicon.png" type="image/gif" />
+    <!-- font css -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="static/css/jquery.mCustomScrollbar.min.css" />
+    <!-- Tweaks for older IEs-->
+    <link rel="stylesheet" href="/static/css/font-awesome.css" />
+    <style>
+        form{
+            text-align: center;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="header_section">
+      <div class="container-fluid zero-space">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a class="navbar-brand" href="index.html"
+            ><img src="static/images/logo.png"
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="/">Home</a>
+              </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+              <div class="login_bt">
+                <ul>
+                  <li>
+                    <a href="/login">
+                      ><span class="user_icon"
+                        ><i class="fa fa-user" aria-hidden="true"></i></span
+                      >Login</a>
+                  </li>
+                  <li>
+                    <a href="#"
+                      ><i class="fa fa-search" aria-hidden="true"></i
+                    ></a>
+                  </li>
+                </ul>
+              </div>
+            </form>
+          </div>
+        </nav>
+      </div>
+
+      <div class="container" style="color: white;">
+        &nbsp;
+        <div class=" row justify-content-center">
+          &nbsp;
+            <div class="col-sm-6 mt-4">
+              &nbsp;
+                <h2 style="text-align: center; color: white;">Login form</h2>
+                <form action="/login" method="POST">
+                  &nbsp;
+                    <div class="form-group">
+                    <label for="email" >Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                    </div>
+                    &nbsp;
+                    <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+                    </div>
+                    &nbsp; <div><button type="submit" class="btn btn-dark">Log In</button></div>
+                      <div><a href="/register" class="btn btn-primary">Register</a></div>
+                      {% if error %}
+                      <div class="alert alert-danger" style="margin-top: 10px;">{{ error }}</div>
+                      {% endif %}
+                </form>
+                &nbsp;
+            </div>
+            &nbsp;
+        </div>
+        &nbsp;
+      </div>
+      <h1 style="text-align: center; color: white;">Join US!</h1>
+      <p style="text-align: center; color: white;">
+      To be a part of our big family of millions around the world<br> One club, One family, One dream<br> Forca Barca<br> The club and pride of Cataluniya<br style="color: yellow;">Log in to access the club's latest features and updates<br>Visca El<br> BARCA!
+      </p>
+      <!-- banner section end -->
+    </div>
+    &nbsp;
+    <!-- copyright section start -->
+    <div class="copyright_section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-sm-12">
+            <p class="copyright_text">2025 All Rights Reserved. Fc Barcelona</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- copyright section end -->
+    <!-- Javascript files-->
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/js/popper.min.js"></script>
+    <script src="static/js/bootstrap.bundle.min.js"></script>
+    <script src="static/js/jquery-3.0.0.min.js"></script>
+    <script src="static/js/plugin.js"></script>
+    <!-- sidebar -->
+    <script src="static/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="static/js/custom.js"></script>
+  </body>
+</html>

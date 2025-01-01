@@ -1,0 +1,98 @@
+{% extends 'base-admin.html' %} {% block body %}
+
+<div>
+  <h1 class="title-text">Update Player</h1>
+  <form
+    action="/admin/players/update/{{player.id}}"
+    method="post"
+    enctype="multipart/form-data"
+    class="form-container"
+  >
+    <h2>Name</h2>
+    <input
+      type="text"
+      name="name"
+      id="name"
+      placeholder="name"
+      value="{{player.name}}"
+    />
+    <h2>Age</h2>
+    <input
+      type="text"
+      name="age"
+      id="age"
+      placeholder="age"
+      value="{{player.age}}"
+    />
+    <h2>Image</h2>
+    <input type="file" name="image" />
+    <h2>Height</h2>
+    <input
+      type="text"
+      name="height"
+      id="height"
+      placeholder="height"
+      value="{{player.height}}"
+    />
+    <h2>Weight</h2>
+    <input
+      type="text"
+      name="weight"
+      id="weight"
+      placeholder="weight"
+      value="{{player.weight}}"
+    />
+    <h2>Nationality</h2>
+    <input
+      type="text"
+      name="nationality"
+      id="nationality"
+      placeholder="nationality"
+      value="{{player.nationality}}"
+    />
+    <h2>Jersey No</h2>
+    <input
+      type="text"
+      name="jersey_no"
+      id="jersey_no"
+      placeholder="jersey_no"
+      value="{{player.jersey_no}}"
+    />
+    <h2>Position</h2>
+    <input
+      type="text"
+      name="position"
+      id="position"
+      placeholder="position"
+      value="{{player.position}}"
+    />
+    <h2>Match Played</h2>
+    <input
+      type="text"
+      name="match_played"
+      id="match_played"
+      placeholder="match_played"
+      value="{{player.match_played}}"
+    />
+    <h2>Goals</h2>
+    <input
+      type="text"
+      name="goals"
+      id="goals"
+      placeholder="goals"
+      value="{{player.goals}}"
+    />
+    <h2>Assists</h2>
+    <input
+      type="text"
+      name="assists"
+      id="assists"
+      placeholder="assists"
+      value="{{player.assists}}"
+    />
+    <br />
+    <input type="submit" value="Update player" />
+  </form>
+</div>
+
+{% endblock %}

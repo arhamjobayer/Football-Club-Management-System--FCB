@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block body %}
+  <body style="background-image: url('/static/uploads/background.jpg'); background-size: cover; margin: 0; color: white;">
+    <div class="card-container-horizontal-players">
+      {% for shop in allproduct %}
+        <div class="card-player">
+          <div>
+            <img src="/static/uploads/{{ shop.imageFile }}" width="200" height="200" alt="{{ shop.name }} Image"/>
+          </div>
+          <div class="product-name">
+            <a href="{{ url_for('product_detail', product_id=shop.id) }}">{{ shop.name }}</a>
+          </div>
+          <div class="product-price" style="color: orange;">Price {{ shop.price }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </body>
+{% endblock %}

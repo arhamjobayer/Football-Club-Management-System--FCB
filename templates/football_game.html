@@ -1,0 +1,136 @@
+<!-- templates/football_game.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Game</title>
+    <style>
+        #field {
+            position: relative;
+            width: 600px;
+            height: 300px;
+            border: 2px solid #000;
+            overflow: hidden;
+        }
+
+        #ball {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #00f;
+            border-radius: 50%;
+        }
+
+        #goal {
+            position: absolute;
+            width: 60px;
+            height: 150px;
+            background-color: #0f0;
+            left: 540px;
+        }
+    </style>
+</head>
+<body>
+    <div id="field">
+        <div id="ball"></div>
+        <div id="goal"></div>
+    </div>
+
+    <!-- Update your HTML script section -->
+<!-- Update your HTML script section -->
+<!-- Update your HTML script section -->
+<script>
+    const ball = document.getElementById('ball');
+    const goal = document.getElementById('goal');
+    let isDragging = false;
+    let dragStartX, dragStartY;
+
+    ball.style.left = '50px';
+    ball.style.top = '135px';
+
+    ball.addEventListener('mousedown', handleMouseDown);
+    document.addEventListener('mouseup', handleMouseUp);
+
+    function handleMouseDown(event) {
+        isDragging = true;
+        dragStartX = event.clientX;
+        dragStartY = event.clientY;
+    }
+
+    function handleMouseUp(event) {
+        if (isDragging) {
+            isDragging = false;
+            const dragEndX = event.clientX;
+            const dragEndY = event.clientY;
+
+            if (dragEndY < dragStartY) {
+                // Calculate velocity based on the distance dragged
+                const velocityX = (dragEndX - dragStartX) * 0.1; // Adjust the multiplier as needed
+                const velocityY = (dragEndY - dragStartY) * 0.1;
+
+                moveBall(velocityX, velocityY);
+                checkGoal();
+            }
+        }
+    }
+
+    document.addEventListener('mousemove', handleMouseMove);
+
+    function handleMouseMove(event) {
+        if (isDragging) {
+            ball.style.left = event.clientX - ball.clientWidth / 2 + 'px';
+            ball.style.top = event.clientY - ball.clientHeight / 2 + 'px';
+        }
+    }
+
+    function moveBall(velocityX, velocityY) {
+        const ballRect = ball.getBoundingClientRect();
+        const fieldRect = document.getElementById('field').getBoundingClientRect();
+
+        // Update the ball position using requestAnimationFrame for smooth animation
+        function animateBall() {
+            const newX = ballRect.left + velocityX;
+            const newY = ballRect.top + velocityY;
+
+            if (newX > fieldRect.left && newX + ball.clientWidth < fieldRect.right &&
+                newY > fieldRect.top && newY + ball.clientHeight < fieldRect.bottom) {
+                ball.style.left = newX + 'px';
+                ball.style.top = newY + 'px';
+                requestAnimationFrame(animateBall);
+            }
+        }
+
+        requestAnimationFrame(animateBall);
+    }
+
+    function checkGoal() {
+        const ballRect = ball.getBoundingClientRect();
+        const goalRect = goal.getBoundingClientRect();
+
+        if (
+            ballRect.left > goalRect.left &&
+            ballRect.right < goalRect.right &&
+            ballRect.top > goalRect.top &&
+            ballRect.bottom < goalRect.bottom
+        ) {
+            fetch('/football_game', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Goal!');
+                    resetBallPosition();
+                    // Update UI with the new score if necessary
+                    document.body.innerHTML = data.html;  // Update the entire body with the returned HTML
+                });
+        }
+    }
+
+    function resetBallPosition() {
+        ball.style.left = '50px';
+        ball.style.top = '135px';
+    }
+</script>
+
+</body>
+</html>

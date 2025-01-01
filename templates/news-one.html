@@ -1,0 +1,10 @@
+{% extends 'base.html' %} {% block body %} {{ share.load() }}
+<div class="card-container">
+  <div class="card-max">
+    <h1 class="title-text">{{ news.title }}</h1>
+    <div>{{ news.created_at.date() }}</div>
+    <h3>{{ news.article}}</h3>
+    {{ share.create(title='Share with: ', sites='facebook,twitter') }}
+  </div>
+</div>
+{% endblock %}

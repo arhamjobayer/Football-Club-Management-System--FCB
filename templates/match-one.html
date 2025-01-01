@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block body %}
+  {{ share.load() }}
+<body style="background-image: url('/static/uploads/background.jpg'); background-size: cover; margin: 0; color: white;">
+  <div class="card-container">
+    <div class="card-max">
+      <h1 class="title-text">{{ match.team1 }} vs {{ match.team2 }}</h1>
+      <div>{{ match.created_at.date() }}</div>
+      <h3>{{ match.stadium }}</h3>
+      <h3>{{ match.time }}</h3>
+
+      <!-- Add a link around the "Buy Ticket" button -->
+      <a href="/buy-ticket/{{match.id}}" style="text-decoration: none; color: inherit;">
+        <button style="background-color: blue; color: white; padding: 10px 20px; font-size: 16px; margin: 10px auto; display: block;">
+          Buy Ticket
+        </button>
+      </a>
+
+      {{ share.create(title='Share with: ', sites='facebook,twitter') }}
+    </div>
+  </div>
+</body>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base-admin.html' %}
+{% block body %}
+
+<div>
+  <form action="/admin/shop" method="post" enctype="multipart/form-data">
+    <!-- Your form to add a product remains here -->
+    <h2>Name</h2>
+    <input type="text" name="name" id="name" placeholder="name" />
+    <h2>Image</h2>
+    <input type="file" name="image" />
+    <h2>Price</h2>
+    <input type="text" name="price" id="price" placeholder="price" />
+    <h2>In Stock</h2>
+    <input type="text" name="jersey_no" id="jersey_no"placeholder="jersey_no"/>
+
+    <br />
+    <input type="submit" value="Add product" />
+  </form>
+
+  <h2>Product List</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Price</th>
+        <th>In Stock</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for product in all_products %}
+      <tr>
+        <td>{{ product.name }}</td>
+        <td>
+          {% if product.imageFile %}
+          <img src="{{ url_for('static', filename='uploads/' + product.imageFile) }}" alt="{{ product.name }}" height="50" width="50">
+          {% else %}
+          No Image
+          {% endif %}
+        </td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.jersey_no }}</td>
+        <td>
+          <form action="{{ url_for('update_product', id=product.id) }}" method="get">
+            <button type="submit">Update</button>
+          </form>
+          <form action="{{ url_for('delete_product', id=product.id) }}" method="post">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

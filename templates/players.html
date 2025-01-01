@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block body %}
+
+<div class="card-container-horizontal-players">
+  {% for player in all_players %}
+  <div class="card-player">
+    <div>
+      <image
+        src="/static/uploads/{{ player.imageFile }}"
+        width="200"
+        height="200"
+      />
+    </div>
+    <div><a href="/players/{{player.id}}">{{ player.name }}</a></div>
+    <div>Age: {{ player.age }}</div>
+    <div>Position: {{ player.position }}</div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base-admin.html' %}
+
+<div>
+  {% block body %}
+  <form action="/admin/matches" method="post">
+    <h2>Team 1</h2>
+    <input type="text" name="team1" id="team1" placeholder="team1" />
+    <h2>Team 2</h2>
+    <input type="text" name="team2" id="team2" placeholder="team2" />
+    <h2>Stadium</h2>
+    <input type="text" name="stadium" id="stadium" placeholder="stadium" />
+    <h2>Time</h2>
+    <input type="text" name="time" id="time" placeholder="time" />
+
+    <br />
+    <input type="submit" value="Add match" />
+  </form>
+  <a href="/admin/matches/scrape"
+    ><button>Scrape matches From Fcbarcelona.com</button></a
+  >
+  <a href="/admin/matches/deleteall"><button>Delete all matches</button></a>
+
+  <table>
+    <tr>
+      <th style="width: 20%">Home Team</th>
+      <th style="width: 20%">Away Team</th>
+      <th>Time</th>
+      <th>Stadium</th>
+      <th>Created At</th>
+      <th>Update</th>
+      <th>Delete</th>
+    </tr>
+    {% for match in all_matches %}
+    <tr>
+      <td>{{ match.team1 }}</td>
+      <td>{{ match.team2 }}</td>
+      <td>{{ match.time }}</td>
+      <td>{{ match.stadium }}</td>
+      <td>{{ match.created_at.date() }}</td>
+      <td><a href="/admin/matches/update/{{match.id}}">Update</a></td>
+      <td><a href="/admin/matches/delete/{{match.id}}">Delete</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% endblock %}
+</div>

@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block body %}
+<table>
+  <tr>
+    <th style="width: 80%; background-color: #cfe2f3;">Title</th>
+
+    <th style="background-color: #d9ead3;">Created At</th>
+  </tr>
+  {% for news in all_news %}
+  <tr>
+    <td style="background-color:   #cfe2f3; color: black;"><a href="/news/{{news.id}}">{{ news.title }}</a></td>
+
+    <td style="background-color: #d9ead3; color: black;">{{ news.created_at.date() }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+&nbsp;
+<!-- <div class="card-container-horizontal">
+  {% for news in all_news %}
+  <div class="card-news">
+    <a href="/news/{{news.id}}"><div>{{ news.title }}</div></a>
+     <div>{{ news.article[:10] }}...</div> 
+    <div>{{ news.created_at.date() }}</div>
+  </div>
+  {% endfor %}
+</div> -->
+{% endblock %}

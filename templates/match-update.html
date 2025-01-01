@@ -1,0 +1,41 @@
+{% extends 'base-admin.html' %} {% block body %}
+<div>
+  <h1 class="title-text">Update match</h1>
+  <form action="/admin/matches/update/{{match.id}}" method="post">
+    <h2>Team 1</h2>
+    <input
+      type="text"
+      name="team1"
+      id="team1"
+      placeholder="team1"
+      value="{{match.team1}}"
+    />
+    <h2>Team 2</h2>
+    <input
+      type="text"
+      name="team2"
+      id="team2"
+      placeholder="team2"
+      value="{{match.team2}}"
+    />
+    <h2>Stadium</h2>
+    <input
+      type="text"
+      name="stadium"
+      id="stadium"
+      placeholder="stadium"
+      value="{{match.stadium}}"
+    />
+    <h2>Time</h2>
+    <input
+      type="text"
+      name="time"
+      id="time"
+      placeholder="time"
+      value="{{match.time}}"
+    />
+    <br />
+    <input type="submit" value="Update match" />
+  </form>
+</div>
+{% endblock %}

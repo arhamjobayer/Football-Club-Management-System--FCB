@@ -1,0 +1,22 @@
+<!-- dashboard.html -->
+{% extends 'base.html' %} {% block body %}
+
+<table>
+  <tr>
+    <th style="width: 20%;background-color: #9fc5e8; color: black;">Home Team</th>
+    <th style="width: 20%; background-color: #edbb00; color: black;">Away Team</th>
+    <th style="background-color:#ffed02; color:black" >Date and Time</th>
+    <th style="background-color: #f6b26b; color:black">Stadium</th>
+  </tr>
+  {% for match in all_matches %}
+  <tr>
+    <td style="background-color:#9fc5e8; color: black;"><a href="/matches/{{match.id}}">{{ match.team1 }}</a></td>
+    <td style="background-color:#edbb00; color:black"><a href="/matches/{{match.id}}">{{ match.team2 }}</a></td>
+    <td style="background-color :#ffed02; color:black">{{ match.time }}</td>
+    <td style="background-color:#f6b26b; color:black">{{ match.stadium }}</td>
+  </tr>
+  {% endfor %}
+</table>
+&nbsp;
+
+{% endblock %}

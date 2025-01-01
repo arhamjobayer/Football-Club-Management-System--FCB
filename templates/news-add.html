@@ -1,0 +1,34 @@
+{% extends 'base-admin.html' %}
+
+<div>
+  {% block body %}
+  <form action="/admin/news" method="post">
+    <h2>Title</h2>
+    <input type="text" name="title" id="title" placeholder="title" />
+    <h2>Article</h2>
+    <input type="text" name="article" id="article" placeholder="article" />
+    <br />
+    <input type="submit" value="Add news" />
+  </form>
+  <a href="/admin/news/scrape">Scrape News From OneFootball.com</a>
+  <a href="/admin/news/deleteall"><button>Delete all news</button></a>
+  <table>
+    <tr>
+      <th style="width: 20%">Title</th>
+      <th style="width: 40%">Article</th>
+      <th>Created At</th>
+      <th>Update</th>
+      <th>Delete</th>
+    </tr>
+    {% for news in all_news %}
+    <tr>
+      <td>{{ news.title }}</td>
+      <td>{{ news.article }}</td>
+      <td>{{ news.created_at.date() }}</td>
+      <td><a href="/admin/news/update/{{news.id}}">Update</a></td>
+      <td><a href="/admin/news/delete/{{news.id}}">Delete</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% endblock %}
+</div>

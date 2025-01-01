@@ -1,0 +1,54 @@
+
+<html lang="en">
+<body style="background-image: url('/static/uploads/background.jpg'); background-size: cover; margin: 0; color: white;">
+<head>
+    <!-- Include the head content from base.html -->
+    {% extends 'base.html' %} {% block body %}
+    <!-- Additional head content specific to dashboard.html can be added here -->
+    <!-- basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+    <!-- site metas -->
+    <title>Dashboard Page</title>
+    <style>
+        form {
+            text-align: center;
+        }
+        .dashboard-content {
+            margin: auto; /* Center the content horizontally */
+            text-align: center; /* Center the text within the container */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" style="background-color: rgba(255, 255, 255, 0.466);">
+        <br><br><br><br>
+        <div class="row justify-content-center">
+            <div class="col-sm-8 dashboard-content">
+                <h2 style="color: black">User Dashboard</h2>
+                <p style="color: black;"><b>Name: </b> {{user.name }}</p>
+                <p style="color: black;"><b>Email: </b> {{user.email }}</p>
+                <a href="/logout" class="btn btn-dark">Logout</a>
+            </div>
+        </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
+
+    <!-- Javascript files-->
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/js/popper.min.js"></script>
+    <script src="static/js/bootstrap.bundle.min.js"></script>
+    <script src="static/js/jquery-3.0.0.min.js"></script>
+    <script src="static/js/plugin.js"></script>
+    <!-- sidebar -->
+    <script src="static/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="static/js/custom.js"></script>
+</body>
+</body>
+</html>
+{% endblock %}
